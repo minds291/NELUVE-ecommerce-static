@@ -118,8 +118,57 @@ let drawerTimer;
 let noteTimer;
 
 function motionDuration() {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 300;
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 420;
 }
+
+// Animate the native details element while retaining its keyboard behavior.
+drawer.querySelectorAll('.drawer__group').forEach((group) => {
+  const summary = group.querySelector('summary');
+  const categories = group.querySelector('.drawer__categories');
+  let animation;
+  let closing = false;
+
+  summary.addEventListener('click', (event) => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      animation?.cancel();
+      animation = null;
+      group.style.height = '';
+      group.style.overflow = '';
+      categories.inert = false;
+      group.classList.remove('is-closing');
+      if (closing) {
+        event.preventDefault();
+        group.open = false;
+        closing = false;
+      }
+      return;
+    }
+
+    event.preventDefault();
+    const startHeight = group.offsetHeight;
+    const shouldOpen = !group.open || closing;
+    animation?.cancel();
+    closing = !shouldOpen;
+    group.classList.toggle('is-closing', closing);
+    categories.inert = closing;
+    group.style.overflow = 'hidden';
+    if (shouldOpen) group.open = true;
+    const endHeight = shouldOpen ? summary.offsetHeight + categories.offsetHeight : summary.offsetHeight;
+    animation = group.animate(
+      { height: [`${startHeight}px`, `${endHeight}px`] },
+      { duration: 360, easing: 'cubic-bezier(.22, 1, .36, 1)' }
+    );
+    animation.onfinish = () => {
+      if (closing) group.open = false;
+      closing = false;
+      group.classList.remove('is-closing');
+      categories.inert = false;
+      group.style.height = '';
+      group.style.overflow = '';
+      animation = null;
+    };
+  });
+});
 
 function closeSearch(restoreFocus = true) {
   if (searchPanel.hidden) return;

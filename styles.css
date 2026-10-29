@@ -56,7 +56,7 @@
   --space-16: 64px;
   --space-18: 72px;
   --motion-fast: 180ms;
-  --motion-drawer: 300ms;
+  --motion-drawer: 420ms;
   --hero-image-desktop: url("assets/neluve-hero.png");
   --hero-image-mobile: url("assets/neluve-hero.png");
 }
@@ -251,8 +251,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 }
 .drawer__summary { cursor: pointer; list-style: none; }
 .drawer__summary::-webkit-details-marker { display: none; }
-.drawer__chevron { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.4; transition: transform var(--motion-fast) ease; }
-.drawer__group[open] .drawer__chevron { transform: rotate(180deg); }
+.drawer__chevron { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.4; transition: transform 360ms cubic-bezier(.22, 1, .36, 1); }
+.drawer__group[open]:not(.is-closing) .drawer__chevron { transform: rotate(180deg); }
 .drawer__categories { display: grid; gap: 0; padding: 16px 0 8px 24px; }
 .drawer__category { display: flex; align-items: center; min-height: 44px; color: var(--color-ink); text-decoration: none; font: 500 30px/1.16 var(--font-display); }
 .drawer__secondary { display: grid; gap: 0; margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--color-border); }
