@@ -1,0 +1,189 @@
+.about-page {
+  --about-gutter: clamp(20px, 4vw, 64px);
+  --about-max-width: 1280px;
+  min-width: 0;
+}
+
+.about-shell {
+  width: min(calc(100% - 2 * var(--about-gutter)), var(--about-max-width));
+  margin-inline: auto;
+}
+
+.about-eyebrow {
+  margin: 0;
+  font: 600 11px/1.5 var(--font-body);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.about-hero { padding-block: clamp(64px, 7vw, 112px) 0; }
+.about-hero__intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, .65fr);
+  align-items: end;
+  column-gap: var(--space-16);
+}
+.about-hero__eyebrow { grid-column: 1 / -1; margin-bottom: var(--space-10); }
+.about-hero__title {
+  max-width: 850px;
+  margin: 0;
+  font: 500 clamp(68px, 7.5vw, 112px)/.94 var(--font-display);
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+.about-hero__description {
+  max-width: 34ch;
+  margin: 0 0 var(--space-2);
+  font: 400 17px/1.7 var(--font-body);
+}
+.about-hero__media { margin: var(--space-16) 0 0; }
+.about-hero__image {
+  --od-ratio: 16 / 9;
+  object-position: center 48%;
+}
+
+.about-philosophy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .9fr);
+  gap: clamp(64px, 8vw, 128px);
+  align-items: center;
+  padding-block: clamp(96px, 10vw, 160px);
+  scroll-margin-top: 112px;
+}
+.about-philosophy__copy { max-width: 560px; }
+.about-philosophy__title,
+.about-principles__title,
+.about-collection__title {
+  margin: var(--space-6) 0 0;
+  font: 500 clamp(52px, 5.4vw, 80px)/.98 var(--font-display);
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+.about-philosophy__text {
+  max-width: 62ch;
+  margin: var(--space-8) 0 0;
+  font: 400 16px/1.7 var(--font-body);
+}
+.about-philosophy__text + .about-philosophy__text { margin-top: var(--space-5); }
+.about-philosophy__media { margin: 0; }
+.about-philosophy__image { aspect-ratio: 1402 / 1122; }
+
+.about-principles { padding-block: 0 clamp(112px, 11vw, 176px); }
+.about-principles__heading { margin-bottom: var(--space-12); }
+.about-principles__title { max-width: 760px; }
+.about-principles__list { margin: 0; padding: 0; list-style: none; }
+.about-principles__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .8fr);
+  align-items: baseline;
+  gap: var(--space-16);
+  padding-block: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+.about-principles__item:last-child { border-bottom: 1px solid var(--color-border); }
+.about-principles__name {
+  margin: 0;
+  font: 500 clamp(36px, 3.6vw, 56px)/1.08 var(--font-display);
+  letter-spacing: -.025em;
+}
+.about-principles__description {
+  max-width: 54ch;
+  margin: 0;
+  font: 400 16px/1.7 var(--font-body);
+}
+
+.about-editorial__media { margin: 0; }
+.about-editorial__image {
+  --od-ratio: 16 / 9;
+  object-position: center 52%;
+}
+.about-editorial__statement {
+  max-width: 1050px;
+  margin: 0;
+  padding-block: clamp(80px, 9vw, 144px);
+  font: 500 clamp(48px, 5.7vw, 84px)/1.03 var(--font-display);
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+
+.about-collection {
+  padding-block: clamp(96px, 10vw, 160px);
+  background: var(--color-linen);
+  text-align: center;
+}
+.about-collection__inner { display: flex; flex-direction: column; align-items: center; }
+.about-collection__title { max-width: 850px; }
+.about-collection__description {
+  margin: var(--space-6) 0 var(--space-10);
+  font: 400 17px/1.7 var(--font-body);
+}
+.about-collection__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: var(--space-3) var(--space-8);
+  background: var(--color-ink);
+  border: 1px solid var(--color-ink);
+  color: var(--color-ivory);
+  font: 600 13px/1.4 var(--font-body);
+  letter-spacing: .04em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform var(--motion-fast) ease-out;
+}
+
+@media (hover: hover) {
+  .about-collection__link:hover { transform: translateY(-2px); }
+}
+
+@media (max-width: 1023px) {
+  .about-hero__intro { column-gap: var(--space-8); }
+  .about-hero__title { font-size: clamp(64px, 8vw, 84px); }
+  .about-philosophy { gap: var(--space-12); }
+}
+
+@media (max-width: 900px) {
+  .about-hero__intro { grid-template-columns: minmax(0, 1fr); }
+  .about-hero__description { max-width: 60ch; margin-top: var(--space-8); }
+  .about-philosophy { grid-template-columns: minmax(0, 1fr); }
+  .about-philosophy__copy { max-width: 720px; }
+  .about-philosophy__media { max-width: 680px; }
+  .about-principles__item { gap: var(--space-8); }
+}
+
+@media (max-width: 600px) {
+  .about-hero { padding-top: var(--space-16); }
+  .about-hero__eyebrow { margin-bottom: var(--space-6); }
+  .about-hero__title { font-size: clamp(48px, 12vw, 64px); line-height: .98; }
+  .about-hero__description { margin-top: var(--space-6); font-size: 16px; }
+  .about-hero__media { margin-top: var(--space-10); }
+  .about-hero__image { --od-ratio: 4 / 5; object-position: 53% center; }
+  .about-philosophy { gap: var(--space-10); padding-block: var(--space-18) 112px; }
+  .about-philosophy__title,
+  .about-principles__title,
+  .about-collection__title { font-size: clamp(46px, 11vw, 58px); }
+  .about-philosophy__text { margin-top: var(--space-6); }
+  .about-principles { padding-bottom: 112px; }
+  .about-principles__heading { margin-bottom: var(--space-8); }
+  .about-principles__item { grid-template-columns: minmax(0, 1fr); gap: var(--space-3); padding-block: var(--space-6); }
+  .about-principles__name { font-size: 40px; }
+  .about-editorial__image { --od-ratio: 4 / 5; object-position: 51% center; }
+  .about-editorial__statement { padding-block: var(--space-18) 88px; font-size: clamp(44px, 10.5vw, 58px); }
+  .about-collection { padding-block: 88px; }
+  .about-collection__description { margin-bottom: var(--space-8); font-size: 16px; }
+  .about-collection__link { width: 100%; max-width: 360px; }
+}
+
+@media (max-width: 339px) {
+  .about-hero__title { font-size: 46px; }
+  .about-philosophy__title,
+  .about-principles__title,
+  .about-collection__title { font-size: 44px; }
+  .about-editorial__statement { font-size: 42px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-collection__link { transition: none; }
+  .about-collection__link:hover { transform: none; }
+}

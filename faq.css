@@ -1,0 +1,140 @@
+/* Page-local styles continue the shared NÉLUVÉ design tokens. */
+.faq-page { min-width: 0; }
+.faq-shell {
+  width: min(1240px, calc(100% - 96px));
+  margin-inline: auto;
+}
+.faq-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding-top: var(--space-10);
+  margin-bottom: var(--space-16);
+  font: 400 13px/1.5 var(--font-body);
+}
+.faq-breadcrumb a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: none;
+}
+.faq-breadcrumb [aria-current] { color: #645c52; }
+.faq-intro { max-width: 900px; padding-bottom: var(--space-16); }
+.faq-title {
+  margin: 0;
+  font: 500 clamp(56px, 7vw, 88px)/.98 var(--font-display);
+  letter-spacing: -.04em;
+  text-wrap: balance;
+}
+.faq-lead {
+  max-width: 65ch;
+  margin: var(--space-8) 0 0;
+  font: 400 17px/1.7 var(--font-body);
+}
+.faq-notice {
+  max-width: 760px;
+  margin: var(--space-12) 0 0;
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  font: 500 16px/1.7 var(--font-body);
+}
+.faq-reading { max-width: 760px; }
+.faq-group {
+  padding-block: var(--space-16);
+  border-top: 1px solid var(--color-border);
+}
+.faq-group h2,
+.faq-more h2 {
+  margin: 0;
+  font: 500 clamp(44px, 4.5vw, 56px)/1.04 var(--font-display);
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+.faq-list {
+  margin-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+.faq-item { border-bottom: 1px solid var(--color-border); }
+.faq-item h3 { margin: 0; }
+.faq-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  width: 100%;
+  min-height: 72px;
+  padding: var(--space-4) 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink);
+  text-align: left;
+  font: 600 17px/1.5 var(--font-body);
+  cursor: pointer;
+}
+.faq-trigger:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 4px; }
+.faq-question { display: block; flex: 1 1 auto; min-width: 0; }
+.faq-icon {
+  display: block;
+  flex: none;
+  width: 24px;
+  text-align: center;
+  font: 400 26px/1 var(--font-body);
+}
+.faq-icon::before { content: "+"; }
+.faq-trigger[aria-expanded="true"] .faq-icon::before { content: "−"; }
+.faq-panel { padding: 0 var(--space-12) var(--space-8) 0; }
+.faq-panel[hidden] { display: none; }
+.faq-panel p {
+  max-width: 68ch;
+  margin: 0;
+  font: 400 16px/1.7 var(--font-body);
+}
+.faq-more {
+  padding-block: var(--space-16) 112px;
+  border-top: 1px solid var(--color-border);
+}
+.faq-more__lead {
+  max-width: 68ch;
+  margin: var(--space-6) 0 0;
+  font: 400 17px/1.7 var(--font-body);
+}
+.faq-links { margin: var(--space-8) 0 0; padding: 0; list-style: none; }
+.faq-links li { border-top: 1px solid var(--color-border); }
+.faq-links li:last-child { border-bottom: 1px solid var(--color-border); }
+.faq-links a {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  padding-block: var(--space-3);
+  color: var(--color-ink);
+  text-decoration: none;
+  font: 500 16px/1.5 var(--font-body);
+}
+@media (hover: hover) {
+  .faq-breadcrumb a:hover,
+  .faq-links a:hover,
+  .faq-trigger:hover .faq-question { text-decoration: underline; text-underline-offset: .25em; }
+}
+@media (max-width: 1023px) {
+  .faq-shell { width: calc(100% - 56px); }
+}
+@media (max-width: 600px) {
+  .faq-shell { width: calc(100% - 40px); }
+  .faq-breadcrumb { padding-top: var(--space-6); margin-bottom: var(--space-10); }
+  .faq-intro { padding-bottom: var(--space-12); }
+  .faq-title { font-size: clamp(48px, 11vw, 60px); }
+  .faq-lead { margin-top: var(--space-6); font-size: 16px; }
+  .faq-notice { margin-top: var(--space-8); }
+  .faq-group { padding-block: var(--space-12); }
+  .faq-group h2,
+  .faq-more h2 { font-size: clamp(40px, 10vw, 48px); }
+  .faq-trigger { gap: var(--space-4); min-height: 64px; font-size: 16px; }
+  .faq-panel { padding-right: var(--space-8); }
+  .faq-more { padding-block: var(--space-12) var(--space-18); }
+  .faq-more__lead { font-size: 16px; }
+}
+@media (max-width: 339px) {
+  .faq-shell { width: calc(100% - 32px); }
+}

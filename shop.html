@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F7F4EE">
+  <meta name="description" content="Коллекция ухода NÉLUVÉ — продуманные средства для ежедневных ритуалов заботы о себе.">
+  <title>Коллекция ухода — NÉLUVÉ</title>
+  <link rel="preload" href="assets/fonts/cormorant-500.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/manrope-400.ttf" as="font" type="font/ttf" crossorigin>
+  <style>
+    /* OD-LAYOUT-PRIMITIVES v1 — structure only: display, flex/grid, overflow, wrapping, ratio.
+       Put this @layer first; product CSS outside the layer always wins. */
+    @layer od-layout {
+      :where(.od-stack,.od-row,.od-row-top,.od-cluster,.od-grid,.od-field,.od-stat,.od-cell,.od-tile) > :where(*) { min-width: 0; }
+
+      /* containers */
+      .od-stack   { display: flex; flex-direction: column; gap: var(--od-gap, 8px); }
+      .od-row     { display: flex; align-items: center; gap: var(--od-gap, 8px); }
+      .od-row-top { display: flex; align-items: flex-start; gap: var(--od-gap, 8px); }
+      .od-cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--od-gap, 8px); }
+      .od-fill    { flex: 1 1 0; min-width: 0; }
+      .od-fixed   { flex: none; }
+      .od-grid    { display: grid; gap: var(--od-gap, 12px); grid-template-columns: repeat(var(--od-cols, 3), minmax(0, 1fr)); }
+
+      /* stacked information: each piece is its own line — never sibling inline spans */
+      .od-stat, .od-field, .od-cell { display: grid; gap: var(--od-gap, 2px); }
+      :where(.od-stat,.od-field,.od-cell) > :where(*) { display: block; }
+      .od-tile { display: grid; grid-template-rows: auto 1fr; }
+      :where(.od-tile) > :where(*) { display: block; }
+
+      /* media keeps its intrinsic ratio by default; never a distorted or cropped
+         cover by accident. height:auto lets the ratio win over an <img height="…">
+         attribute. Cropping to a uniform box is an explicit opt-in: set --od-ratio
+         AND add .od-media-cover together (per the core rule, only where a crop is
+         deliberate — tile thumbs, decorative fills — never on full-frame content). */
+      .od-media { display: block; width: 100%; height: auto; aspect-ratio: var(--od-ratio, auto); }
+      .od-media-cover { object-fit: cover; }
+
+      /* data text only — authored copy is rewritten to its budget instead */
+      .od-truncate { display: block; max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+      .od-clamp-2, .od-clamp-3 { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+      .od-clamp-2 { -webkit-line-clamp: 2; }
+      .od-clamp-3 { -webkit-line-clamp: 3; }
+      .od-lines-2 { min-height: calc(2 * 1.4em); }
+      .od-nowrap  { white-space: nowrap; }
+      .od-keep    { word-break: keep-all; overflow-wrap: anywhere; }
+
+      /* screen skeleton (optional): bars take their own space, the middle scrolls */
+      .od-screen { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; height: 100%; }
+      .od-scroll { overflow-y: auto; overscroll-behavior: contain; min-height: 0; }
+
+      /* horizontal rail: the next item peeks at the edge */
+      .od-rail { display: flex; gap: var(--od-gap, 8px); overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none;
+                 padding-inline: var(--od-rail-pad, 16px); scroll-padding-inline: var(--od-rail-pad, 16px); }
+      .od-rail::-webkit-scrollbar { display: none; }
+      :where(.od-rail) > :where(*) { flex: none; scroll-snap-align: start; }
+      :where(.od-rail) > :where(:last-child) { margin-inline-end: var(--od-rail-pad, 16px); }
+
+      .od-spacer { flex: none; visibility: hidden; pointer-events: none; }
+      .od-touch  { min-width: 44px; min-height: 44px; }
+    }
+    /* /OD-LAYOUT-PRIMITIVES v1 */
+  </style>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="shop.css">
+  <script src="products.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="shop.js" defer></script>
+</head>
+<body>
+  <!-- Announcement bar -->
+  <div class="announcement" role="note" aria-label="NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.">
+    <div class="announcement__track" aria-hidden="true">
+      <div class="announcement__group">
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+      </div>
+      <div class="announcement__group">
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Separate sticky header -->
+  <header class="site-header" id="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__left">
+        <button class="icon-button menu-trigger od-touch" id="menu-button" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu-drawer">
+          <span class="menu-trigger__lines" aria-hidden="true"></span>
+          <span class="menu-trigger__label">Меню</span>
+        </button>
+      </div>
+      <a class="wordmark" href="index.html#top" aria-label="NÉLUVÉ — на главную">NÉLUVÉ</a>
+      <div class="site-header__right">
+        <button class="icon-button od-touch" id="search-button" type="button" aria-label="Открыть поиск" aria-expanded="false" aria-controls="search-panel">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.7"></circle><path d="m15.8 15.8 5 5"></path></svg>
+        </button>
+        <button class="icon-button od-touch" id="cart-button" type="button" aria-label="Корзина, 0 товаров">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg>
+          <span class="cart-count" aria-hidden="true">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search input state -->
+    <div class="search-panel" id="search-panel" hidden>
+      <div class="search-panel__inner">
+        <div class="search-panel__top">
+          <label class="search-panel__label" for="search-input">Поиск по уходу</label>
+          <button class="icon-button od-touch" id="search-close" type="button" aria-label="Закрыть поиск">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19"></path></svg>
+          </button>
+        </div>
+        <form class="search-panel__form" id="search-form" role="search">
+          <input class="search-panel__input" id="search-input" name="s" type="search" autocomplete="off" placeholder="Например, сыворотка">
+          <button class="search-panel__submit" type="submit">Искать</button>
+        </form>
+        <p class="search-panel__feedback" id="search-feedback" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Slide-in navigation drawer -->
+  <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+  <aside class="drawer" id="menu-drawer" role="dialog" aria-modal="true" aria-label="Меню NÉLUVÉ" hidden>
+    <div class="drawer__top">
+      <span class="drawer__caption">Меню</span>
+      <button class="icon-button od-touch" id="drawer-close" type="button" aria-label="Закрыть меню">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19"></path></svg>
+      </button>
+    </div>
+    <div class="drawer__body">
+      <nav class="drawer__primary" aria-label="Основная навигация">
+        <details class="drawer__group" open>
+          <summary class="drawer__summary">Каталог
+            <svg class="drawer__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 9 7 7 7-7"></path></svg>
+          </summary>
+          <div class="drawer__categories">
+            <a class="drawer__category" href="shop.html?category=cleansing">Очищение</a>
+            <a class="drawer__category" href="shop.html?category=serums">Сыворотки</a>
+            <a class="drawer__category" href="shop.html?category=creams">Кремы</a>
+            <a class="drawer__category" href="shop.html?category=body">Уход за телом</a>
+          </div>
+        </details>
+        <a class="drawer__main-link" href="about.html">О бренде</a>
+      </nav>
+      <nav class="drawer__secondary" aria-label="Дополнительная навигация">
+        <a href="delivery.html">Доставка и оплата</a>
+        <a href="contact.html">Контакты</a>
+        <a href="account/" data-future-link data-note="Личный кабинет появится в следующей версии сайта.">Личный кабинет</a>
+      </nav>
+    </div>
+    <div class="drawer__footer" aria-hidden="true">NÉLUVÉ</div>
+  </aside>
+
+  <main class="shop-page" id="top">
+    <section class="shop-intro shop-container" aria-labelledby="shop-title">
+      <nav class="shop-breadcrumb" aria-label="Хлебные крошки">
+        <a href="index.html">Главная</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Каталог</span>
+      </nav>
+      <p class="shop-eyebrow">КОЛЛЕКЦИЯ NÉLUVÉ</p>
+      <h1 class="shop-title" id="shop-title">Коллекция ухода</h1>
+      <p class="shop-description">Продуманные средства для ежедневных ритуалов заботы о себе.</p>
+      <nav class="shop-categories-nav od-rail" aria-label="Категории товаров" tabindex="0">
+        <button class="shop-category is-active od-touch" type="button" data-category="all" aria-pressed="true">Все средства</button>
+        <button class="shop-category od-touch" type="button" data-category="cleansing" aria-pressed="false">Очищение</button>
+        <button class="shop-category od-touch" type="button" data-category="serums" aria-pressed="false">Сыворотки</button>
+        <button class="shop-category od-touch" type="button" data-category="creams" aria-pressed="false">Кремы</button>
+        <button class="shop-category od-touch" type="button" data-category="body" aria-pressed="false">Уход за телом</button>
+      </nav>
+    </section>
+
+    <section class="shop-catalog shop-container" aria-label="Каталог средств">
+      <div class="shop-toolbar">
+        <p class="shop-toolbar__count" id="shop-result-count" role="status" aria-live="polite">Найдено: 24 товара</p>
+        <div class="shop-toolbar__controls">
+          <div class="shop-toolbar__filter-wrap">
+            <button class="shop-filter-toggle od-touch" id="filter-toggle" type="button" aria-expanded="false" aria-controls="price-filter-panel">
+              Фильтры <span class="shop-filter-badge" id="filter-badge" hidden>0</span>
+            </button>
+            <div class="filter-backdrop" id="filter-backdrop" hidden></div>
+            <aside class="filter-panel" id="price-filter-panel" role="dialog" aria-modal="false" aria-labelledby="filter-title" hidden>
+              <div class="filter-panel__header">
+                <h2 class="filter-panel__title" id="filter-title">Фильтры</h2>
+                <button class="icon-button od-touch" id="filter-close" type="button" aria-label="Закрыть фильтры">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19"></path></svg>
+                </button>
+              </div>
+              <form class="filter-panel__form" id="filter-form" novalidate>
+                <div class="filter-panel__price">
+                  <p class="filter-panel__legend">Цена, ₽</p>
+                  <div class="filter-panel__fields od-grid">
+                    <div class="filter-panel__field">
+                      <label for="price-min">От</label>
+                      <input id="price-min" type="number" inputmode="numeric" min="0" step="1" placeholder="0" aria-describedby="filter-price-error">
+                    </div>
+                    <div class="filter-panel__field">
+                      <label for="price-max">До</label>
+                      <input id="price-max" type="number" inputmode="numeric" min="0" step="1" placeholder="5000" aria-describedby="filter-price-error">
+                    </div>
+                  </div>
+                  <p class="filter-panel__error" id="filter-price-error" role="alert" aria-live="polite"></p>
+                </div>
+                <div class="filter-panel__actions">
+                  <button class="filter-panel__reset" id="filter-reset" type="button">Сбросить</button>
+                  <button class="filter-panel__apply" type="submit">Применить</button>
+                </div>
+              </form>
+            </aside>
+          </div>
+          <div class="shop-sort">
+            <label for="sort-select">Сортировать</label>
+            <select id="sort-select">
+              <option value="recommended">Рекомендуемые</option>
+              <option value="price-asc">Сначала дешевле</option>
+              <option value="price-desc">Сначала дороже</option>
+              <option value="name">По названию</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <p class="shop-filter-summary" id="filter-summary">Все цены</p>
+
+      <div class="shop-results">
+        <div class="shop-grid od-grid" id="shop-grid" aria-label="Товары"></div>
+        <div class="shop-empty" id="shop-empty" hidden>
+          <h2>Средства не найдены</h2>
+          <p>Попробуйте изменить категорию или диапазон цен.</p>
+          <button id="empty-reset" type="button">Сбросить фильтры</button>
+        </div>
+        <div class="shop-more">
+          <p class="shop-shown-count" id="shop-shown-count" role="status" aria-live="polite">Показано 12 из 24</p>
+          <button class="shop-load-more" id="load-more" type="button">Показать ещё</button>
+        </div>
+      </div>
+      <p class="visually-hidden" id="cart-feedback" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+  <footer class="site-footer" aria-label="Подвал сайта">
+    <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <section class="site-footer__newsletter" aria-labelledby="footer-newsletter-title">
+          <h2 class="site-footer__heading" id="footer-newsletter-title">Оставайтесь ближе к NÉLUVÉ</h2>
+          <p class="site-footer__description">Новости об уходе, коллекциях и наших ритуалах. Без лишнего.</p>
+          <form class="site-footer__form" id="newsletter-form" novalidate>
+            <label class="site-footer__label" for="newsletter-email">Электронная почта</label>
+            <div class="site-footer__field">
+              <input class="site-footer__input" id="newsletter-email" type="email" inputmode="email" autocomplete="email" placeholder="Ваш адрес" aria-describedby="newsletter-status" required>
+              <button class="site-footer__submit" type="submit" aria-label="Отправить адрес для подписки">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg>
+              </button>
+            </div>
+            <p class="site-footer__status" id="newsletter-status" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <nav class="site-footer__navigation" aria-label="Навигация в подвале">
+          <div class="site-footer__nav-group">
+            <h3 class="site-footer__nav-title">Магазин</h3>
+            <ul class="site-footer__links">
+              <li><a href="shop.html">Каталог</a></li>
+              <li><a href="shop.html?category=cleansing">Очищение</a></li>
+              <li><a href="shop.html?category=serums">Сыворотки</a></li>
+              <li><a href="shop.html?category=creams">Кремы</a></li>
+              <li><a href="shop.html?category=body">Уход за телом</a></li>
+            </ul>
+          </div>
+          <div class="site-footer__nav-group">
+            <h3 class="site-footer__nav-title">О бренде</h3>
+            <ul class="site-footer__links">
+              <li><a href="about.html#philosophy">Наша философия</a></li>
+              <li><a href="shop.html">Коллекция ухода</a></li>
+              <li><a href="contact.html">Контакты</a></li>
+            </ul>
+          </div>
+          <div class="site-footer__nav-group">
+            <h3 class="site-footer__nav-title">Помощь</h3>
+            <ul class="site-footer__links">
+              <li><a href="delivery.html">Доставка и оплата</a></li>
+              <li><a href="returns.html">Возврат</a></li>
+              <li><a href="faq.html">Вопросы и ответы</a></li>
+              <li><a href="#" data-future-link>Личный кабинет</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="site-footer__brand"><span class="site-footer__wordmark">NÉLUVÉ</span></div>
+
+      <div class="site-footer__bottom">
+        <p>© 2026 NÉLUVÉ</p>
+        <p class="site-footer__legal">Демонстрационный проект · Не является действующим магазином</p>
+        <a class="site-footer__policy" href="#" data-future-link data-note="Политика конфиденциальности будет доступна при запуске магазина.">Политика конфиденциальности</a>
+      </div>
+    </div>
+  </footer>
+
+  <template id="shop-product-template">
+    <article class="product-card od-tile">
+      <a class="shop-product__image-button product-card__image-link" href="product.html?id=hydra-serum" data-product-open>
+        <img class="product-card__image od-media" alt="" width="1086" height="1448" loading="lazy" decoding="async">
+      </a>
+      <div class="product-card__body">
+        <h3 class="product-card__name"><a class="shop-product__name-button product-card__name-link" href="product.html?id=hydra-serum" data-product-open></a></h3>
+        <p class="product-card__description"></p>
+        <p class="product-card__volume"></p>
+        <div class="product-card__purchase">
+          <span class="product-card__price od-nowrap"></span>
+          <button class="product-card__add" type="button">В корзину</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <div class="prototype-note" id="prototype-note" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

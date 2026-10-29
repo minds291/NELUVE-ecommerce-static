@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F7F4EE">
+  <meta name="description" content="Hydra Serum — увлажняющая сыворотка NÉLUVÉ, 30 мл. Информация о товаре и коллекция ухода.">
+  <title>Hydra Serum — NÉLUVÉ</title>
+  <link rel="preload" href="assets/fonts/cormorant-500.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/manrope-400.ttf" as="font" type="font/ttf" crossorigin>
+  <style>
+    /* OD-LAYOUT-PRIMITIVES v1 — structure only: display, flex/grid, overflow, wrapping, ratio.
+       Put this @layer first; product CSS outside the layer always wins. */
+    @layer od-layout {
+      :where(.od-stack,.od-row,.od-row-top,.od-cluster,.od-grid,.od-field,.od-stat,.od-cell,.od-tile) > :where(*) { min-width: 0; }
+
+      /* containers */
+      .od-stack   { display: flex; flex-direction: column; gap: var(--od-gap, 8px); }
+      .od-row     { display: flex; align-items: center; gap: var(--od-gap, 8px); }
+      .od-row-top { display: flex; align-items: flex-start; gap: var(--od-gap, 8px); }
+      .od-cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--od-gap, 8px); }
+      .od-fill    { flex: 1 1 0; min-width: 0; }
+      .od-fixed   { flex: none; }
+      .od-grid    { display: grid; gap: var(--od-gap, 12px); grid-template-columns: repeat(var(--od-cols, 3), minmax(0, 1fr)); }
+
+      /* stacked information: each piece is its own line — never sibling inline spans */
+      .od-stat, .od-field, .od-cell { display: grid; gap: var(--od-gap, 2px); }
+      :where(.od-stat,.od-field,.od-cell) > :where(*) { display: block; }
+      .od-tile { display: grid; grid-template-rows: auto 1fr; }
+      :where(.od-tile) > :where(*) { display: block; }
+
+      /* media keeps its intrinsic ratio by default; never a distorted or cropped
+         cover by accident. height:auto lets the ratio win over an <img height="…">
+         attribute. Cropping to a uniform box is an explicit opt-in: set --od-ratio
+         AND add .od-media-cover together (per the core rule, only where a crop is
+         deliberate — tile thumbs, decorative fills — never on full-frame content). */
+      .od-media { display: block; width: 100%; height: auto; aspect-ratio: var(--od-ratio, auto); }
+      .od-media-cover { object-fit: cover; }
+
+      /* data text only — authored copy is rewritten to its budget instead */
+      .od-truncate { display: block; max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+      .od-clamp-2, .od-clamp-3 { display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+      .od-clamp-2 { -webkit-line-clamp: 2; }
+      .od-clamp-3 { -webkit-line-clamp: 3; }
+      .od-lines-2 { min-height: calc(2 * 1.4em); }
+      .od-nowrap  { white-space: nowrap; }
+      .od-keep    { word-break: keep-all; overflow-wrap: anywhere; }
+
+      /* screen skeleton (optional): bars take their own space, the middle scrolls */
+      .od-screen { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; height: 100%; }
+      .od-scroll { overflow-y: auto; overscroll-behavior: contain; min-height: 0; }
+
+      /* horizontal rail: the next item peeks at the edge */
+      .od-rail { display: flex; gap: var(--od-gap, 8px); overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none;
+                 padding-inline: var(--od-rail-pad, 16px); scroll-padding-inline: var(--od-rail-pad, 16px); }
+      .od-rail::-webkit-scrollbar { display: none; }
+      :where(.od-rail) > :where(*) { flex: none; scroll-snap-align: start; }
+      :where(.od-rail) > :where(:last-child) { margin-inline-end: var(--od-rail-pad, 16px); }
+
+      .od-spacer { flex: none; visibility: hidden; pointer-events: none; }
+      .od-touch  { min-width: 44px; min-height: 44px; }
+    }
+    /* /OD-LAYOUT-PRIMITIVES v1 */
+  </style>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="shop.css">
+  <link rel="stylesheet" href="product.css">
+  <script src="products.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="product.js" defer></script>
+</head>
+<body>
+  <!-- Approved global announcement and header -->
+  <div class="announcement" role="note" aria-label="NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.">
+    <div class="announcement__track" aria-hidden="true">
+      <div class="announcement__group">
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+      </div>
+      <div class="announcement__group">
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+        <span>NÉLUVÉ — МЕНЬШЕ ЛИШНЕГО. БОЛЬШЕ ЗАБОТЫ.</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header" id="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__left">
+        <button class="icon-button menu-trigger od-touch" id="menu-button" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu-drawer">
+          <span class="menu-trigger__lines" aria-hidden="true"></span>
+          <span class="menu-trigger__label">Меню</span>
+        </button>
+      </div>
+      <a class="wordmark" href="index.html#top" aria-label="NÉLUVÉ — на главную">NÉLUVÉ</a>
+      <div class="site-header__right">
+        <button class="icon-button od-touch" id="search-button" type="button" aria-label="Открыть поиск" aria-expanded="false" aria-controls="search-panel">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.7"></circle><path d="m15.8 15.8 5 5"></path></svg>
+        </button>
+        <button class="icon-button od-touch" id="cart-button" type="button" aria-label="Корзина, 0 товаров">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg>
+          <span class="cart-count" aria-hidden="true">0</span>
+        </button>
+      </div>
+    </div>
+    <div class="search-panel" id="search-panel" hidden>
+      <div class="search-panel__inner">
+        <div class="search-panel__top">
+          <label class="search-panel__label" for="search-input">Поиск по уходу</label>
+          <button class="icon-button od-touch" id="search-close" type="button" aria-label="Закрыть поиск">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19"></path></svg>
+          </button>
+        </div>
+        <form class="search-panel__form" id="search-form" role="search">
+          <input class="search-panel__input" id="search-input" name="s" type="search" autocomplete="off" placeholder="Например, сыворотка">
+          <button class="search-panel__submit" type="submit">Искать</button>
+        </form>
+        <p class="search-panel__feedback" id="search-feedback" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </header>
+
+  <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+  <aside class="drawer" id="menu-drawer" role="dialog" aria-modal="true" aria-label="Меню NÉLUVÉ" hidden>
+    <div class="drawer__top">
+      <span class="drawer__caption">Меню</span>
+      <button class="icon-button od-touch" id="drawer-close" type="button" aria-label="Закрыть меню">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5 19 19M19 5 5 19"></path></svg>
+      </button>
+    </div>
+    <div class="drawer__body">
+      <nav class="drawer__primary" aria-label="Основная навигация">
+        <details class="drawer__group" open>
+          <summary class="drawer__summary">Каталог
+            <svg class="drawer__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 9 7 7 7-7"></path></svg>
+          </summary>
+          <div class="drawer__categories">
+            <a class="drawer__category" href="shop.html?category=cleansing">Очищение</a>
+            <a class="drawer__category" href="shop.html?category=serums">Сыворотки</a>
+            <a class="drawer__category" href="shop.html?category=creams">Кремы</a>
+            <a class="drawer__category" href="shop.html?category=body">Уход за телом</a>
+          </div>
+        </details>
+        <a class="drawer__main-link" href="about.html">О бренде</a>
+      </nav>
+      <nav class="drawer__secondary" aria-label="Дополнительная навигация">
+        <a href="delivery.html">Доставка и оплата</a>
+        <a href="contact.html">Контакты</a>
+        <a href="account/" data-future-link data-note="Личный кабинет появится в следующей версии сайта.">Личный кабинет</a>
+      </nav>
+    </div>
+    <div class="drawer__footer" aria-hidden="true">NÉLUVÉ</div>
+  </aside>
+
+  <main class="product-page" id="top">
+    <div class="product-container">
+      <nav class="shop-breadcrumb product-breadcrumb" aria-label="Хлебные крошки">
+        <a href="index.html">Главная</a><span aria-hidden="true">/</span>
+        <a href="shop.html">Каталог</a><span aria-hidden="true">/</span>
+        <a id="breadcrumb-category" href="shop.html?category=serums">Сыворотки</a><span id="breadcrumb-category-separator" aria-hidden="true">/</span>
+        <span id="breadcrumb-current" aria-current="page">Hydra Serum</span>
+      </nav>
+
+      <section class="shop-empty" id="product-not-found" aria-labelledby="product-not-found-title" hidden>
+        <h1 class="product-details__title" id="product-not-found-title">Товар не найден</h1>
+        <p>Проверьте адрес товара или выберите средство в каталоге.</p>
+        <a class="button-primary" href="shop.html">Открыть каталог</a>
+      </section>
+
+      <div class="product-layout" data-product-id="hydra-serum">
+        <section class="product-gallery" aria-label="Галерея Hydra Serum">
+          <div class="product-gallery__stage">
+            <div class="product-gallery__slide">
+              <img class="product-gallery__image od-media" width="1086" height="1448" alt="" fetchpriority="high">
+            </div>
+          </div>
+          <div class="product-gallery__navigation">
+            <div class="product-gallery__thumbs" role="group" aria-label="Выбрать изображение">
+              <button class="product-gallery__thumb" type="button" data-gallery-index="0" aria-label="Показать фото Hydra Serum" aria-pressed="true">
+                <img width="1086" height="1448" alt="" loading="lazy">
+              </button>
+            </div>
+            <div class="product-gallery__controls">
+              <span class="product-gallery__counter" id="gallery-counter" aria-hidden="true">01 / 01</span>
+              <button class="product-gallery__arrow od-touch" id="gallery-prev" type="button" aria-label="Предыдущее изображение" disabled>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7"></path></svg>
+              </button>
+              <button class="product-gallery__arrow od-touch" id="gallery-next" type="button" aria-label="Следующее изображение" disabled>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 5 7 7-7 7"></path></svg>
+              </button>
+            </div>
+          </div>
+          <p class="product-gallery__status" id="gallery-status" role="status" aria-live="polite">Показано фото Hydra Serum.</p>
+        </section>
+
+        <section class="product-info" aria-labelledby="product-title">
+          <p class="product-info__category">СЫВОРОТКИ</p>
+          <h1 class="product-info__name" id="product-title">Hydra Serum</h1>
+          <p class="product-info__subtitle">Увлажняющая сыворотка</p>
+          <span class="product-info__price od-nowrap" data-product-price="2490">2 490 ₽</span>
+          <span class="product-info__volume od-nowrap">Объём: 30 мл</span>
+          <p class="product-info__summary">Hydra Serum — увлажняющая сыворотка объёмом 30 мл для ежедневного ритуала ухода.</p>
+          <form class="product-purchase" id="product-purchase-form">
+            <label class="product-purchase__label" for="product-quantity">Количество</label>
+            <div class="product-quantity" role="group" aria-label="Количество товара">
+              <button class="product-quantity__button od-touch" id="quantity-minus" type="button" aria-label="Уменьшить количество" disabled>−</button>
+              <output class="product-quantity__value" id="product-quantity" name="quantity">1</output>
+              <button class="product-quantity__button od-touch" id="quantity-plus" type="button" aria-label="Увеличить количество">+</button>
+            </div>
+            <button class="button-primary product-purchase__submit" type="submit">Добавить в корзину</button>
+            <p class="product-purchase__feedback" id="product-purchase-feedback" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+      </div>
+
+      <section class="product-details" aria-labelledby="product-details-title">
+        <div>
+          <p class="product-details__eyebrow">HYDRA SERUM</p>
+          <h2 class="product-details__title" id="product-details-title">Подробнее о продукте</h2>
+        </div>
+        <div class="product-details__list">
+          <details class="product-details__item" open>
+            <summary>Описание</summary>
+            <div class="product-details__body"><p>Hydra Serum — увлажняющая сыворотка NÉLUVÉ в формате 30 мл. Часть коллекции средств для продуманного ежедневного ухода.</p></div>
+          </details>
+          <details class="product-details__item">
+            <summary>Состав</summary>
+            <div class="product-details__body"><p>Полный список ингредиентов будет добавлен после подтверждения данных о продукте.</p></div>
+          </details>
+          <details class="product-details__item">
+            <summary>Способ применения</summary>
+            <div class="product-details__body"><p>Инструкция по применению будет добавлена после согласования информации о продукте.</p></div>
+          </details>
+          <details class="product-details__item">
+            <summary>Доставка и возврат</summary>
+            <div class="product-details__body"><p>Условия доставки и возврата будут опубликованы при запуске магазина.</p></div>
+          </details>
+        </div>
+      </section>
+
+      <section class="product-related" aria-labelledby="product-related-title">
+        <div class="product-related__header">
+          <p class="product-related__eyebrow">КОЛЛЕКЦИЯ NÉLUVÉ</p>
+          <h2 class="product-related__title" id="product-related-title">Вам также понравится</h2>
+          <p class="product-related__feedback" id="related-feedback" role="status" aria-live="polite"></p>
+        </div>
+        <div class="shop-grid product-related__grid od-grid">
+          <article class="product-card od-tile" data-product-id="daily-cream" data-product-name="Daily Cream">
+            <a class="shop-product__image-button product-card__image-link" href="product.html?id=daily-cream" data-related-open aria-label="Открыть Daily Cream">
+              <img class="product-card__image od-media" alt="" width="1086" height="1448" loading="lazy" decoding="async">
+            </a>
+            <div class="product-card__body">
+              <h3 class="product-card__name"><a class="shop-product__name-button product-card__name-link" href="product.html?id=daily-cream" data-related-open>Daily Cream</a></h3>
+              <p class="product-card__description">Крем для лица</p>
+              <p class="product-card__volume">50 мл</p>
+              <div class="product-card__purchase">
+                <span class="product-card__price od-nowrap">2 190 ₽</span>
+                <button class="product-card__add" type="button" data-related-add aria-label="Добавить Daily Cream в корзину">В корзину</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card od-tile" data-product-id="gentle-cleanser" data-product-name="Gentle Cleanser">
+            <a class="shop-product__image-button product-card__image-link" href="product.html?id=gentle-cleanser" data-related-open aria-label="Открыть Gentle Cleanser">
+              <img class="product-card__image od-media" alt="" width="1086" height="1448" loading="lazy" decoding="async">
+            </a>
+            <div class="product-card__body">
+              <h3 class="product-card__name"><a class="shop-product__name-button product-card__name-link" href="product.html?id=gentle-cleanser" data-related-open>Gentle Cleanser</a></h3>
+              <p class="product-card__description">Очищающий гель</p>
+              <p class="product-card__volume">200 мл</p>
+              <div class="product-card__purchase">
+                <span class="product-card__price od-nowrap">1 690 ₽</span>
+                <button class="product-card__add" type="button" data-related-add aria-label="Добавить Gentle Cleanser в корзину">В корзину</button>
+              </div>
+            </div>
+          </article>
+          <article class="product-card od-tile" data-product-id="renewal-essence" data-product-name="Renewal Essence">
+            <a class="shop-product__image-button product-card__image-link" href="product.html?id=renewal-essence" data-related-open aria-label="Открыть Renewal Essence">
+              <img class="product-card__image od-media" alt="" width="1086" height="1448" loading="lazy" decoding="async">
+            </a>
+            <div class="product-card__body">
+              <h3 class="product-card__name"><a class="shop-product__name-button product-card__name-link" href="product.html?id=renewal-essence" data-related-open>Renewal Essence</a></h3>
+              <p class="product-card__description">Восстанавливающая эссенция</p>
+              <p class="product-card__volume">100 мл</p>
+              <div class="product-card__purchase">
+                <span class="product-card__price od-nowrap">2 790 ₽</span>
+                <button class="product-card__add" type="button" data-related-add aria-label="Добавить Renewal Essence в корзину">В корзину</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Approved global footer -->
+  <footer class="site-footer" aria-label="Подвал сайта">
+    <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <section class="site-footer__newsletter" aria-labelledby="footer-newsletter-title">
+          <h2 class="site-footer__heading" id="footer-newsletter-title">Оставайтесь ближе к NÉLUVÉ</h2>
+          <p class="site-footer__description">Новости об уходе, коллекциях и наших ритуалах. Без лишнего.</p>
+          <form class="site-footer__form" id="newsletter-form" novalidate>
+            <label class="site-footer__label" for="newsletter-email">Электронная почта</label>
+            <div class="site-footer__field">
+              <input class="site-footer__input" id="newsletter-email" type="email" inputmode="email" autocomplete="email" placeholder="Ваш адрес" aria-describedby="newsletter-status" required>
+              <button class="site-footer__submit" type="submit" aria-label="Отправить адрес для подписки">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg>
+              </button>
+            </div>
+            <p class="site-footer__status" id="newsletter-status" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <nav class="site-footer__navigation" aria-label="Навигация в подвале">
+          <div class="site-footer__nav-group">
+            <h3 class="site-footer__nav-title">Магазин</h3>
+            <ul class="site-footer__links">
+              <li><a href="shop.html">Каталог</a></li>
+              <li><a href="shop.html?category=cleansing">Очищение</a></li>
+              <li><a href="shop.html?category=serums">Сыворотки</a></li>
+              <li><a href="shop.html?category=creams">Кремы</a></li>
+              <li><a href="shop.html?category=body">Уход за телом</a></li>
+            </ul>
+          </div>
+          <div class="site-footer__nav-group">
+            <h3 class="site-footer__nav-title">О бренде</h3>
+            <ul class="site-footer__links">
+              <li><a href="about.html#philosophy">Наша философия</a></li>
+              <li><a href="shop.html">Коллекция ухода</a></li>
+              <li><a href="contact.html">Контакты</a></li>
+            </ul>
+          </div>
+          <div class="site-footer__nav-group">
+            <h3 class="site-footer__nav-title">Помощь</h3>
+            <ul class="site-footer__links">
+              <li><a href="delivery.html">Доставка и оплата</a></li>
+              <li><a href="returns.html">Возврат</a></li>
+              <li><a href="faq.html">Вопросы и ответы</a></li>
+              <li><a href="#" data-future-link>Личный кабинет</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="site-footer__brand"><span class="site-footer__wordmark">NÉLUVÉ</span></div>
+      <div class="site-footer__bottom">
+        <p>© 2026 NÉLUVÉ</p>
+        <p class="site-footer__legal">Демонстрационный проект · Не является действующим магазином</p>
+        <a class="site-footer__policy" href="#" data-future-link data-note="Политика конфиденциальности будет доступна при запуске магазина.">Политика конфиденциальности</a>
+      </div>
+    </div>
+  </footer>
+  <div class="prototype-note" id="prototype-note" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
