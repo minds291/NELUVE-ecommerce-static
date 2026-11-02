@@ -234,7 +234,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .drawer.is-open { transform: translateX(0); }
 .drawer__top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .drawer__caption { font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
-.drawer__body { flex: 1; min-height: 0; overflow-y: auto; padding-top: 44px; scrollbar-width: thin; }
+.drawer__body { flex: 1; min-height: 0; overflow-y: auto; padding-top: 44px; scrollbar-width: none; -ms-overflow-style: none; }
+.drawer__body::-webkit-scrollbar { display: none; }
 .drawer__primary { display: grid; gap: 14px; }
 .drawer__group { border: 0; }
 .drawer__summary, .drawer__main-link {
